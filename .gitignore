@@ -1,1 +1,11 @@
 build/
+dist/default/production/AufDemAetherIstDieHoelleLos.X.production.elf
+dist/default/production/AufDemAetherIstDieHoelleLos.X.production.cmf
+dist/default/production/AufDemAetherIstDieHoelleLos.X.production.lst
+dist/default/production/AufDemAetherIstDieHoelleLos.X.production.map
+dist/default/production/AufDemAetherIstDieHoelleLos.X.production.mum
+dist/default/production/AufDemAetherIstDieHoelleLos.X.production.o
+dist/default/production/AufDemAetherIstDieHoelleLos.X.production.rlf
+dist/default/production/AufDemAetherIstDieHoelleLos.X.production.sdb
+dist/default/production/AufDemAetherIstDieHoelleLos.X.production.sym
+dist/default/production/AufDemAetherIstDieHoelleLos.X.production.hxl
