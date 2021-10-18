@@ -44,14 +44,19 @@
 #include "mcc_generated_files/mcc.h"
 
 
-void setOutput(uint8_t outputIndex)
+static uint8_t lastOutput = 1;
+
+
+void setOutput(uint8_t outputNumber)
 {
     LATC = (uint8_t)0x00;
     
-    if(outputIndex < 6)
+    if(outputNumber > 0)
     {
         __delay_ms(100);
-        LATC  = (uint8_t)0x01 << outputIndex;
+        
+        lastOutput = outputNumber;
+        LATC  = (uint8_t)0x01 << (outputNumber -1);
     }
 }
 
@@ -77,37 +82,50 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
+   
+    
+    //All Outputs off
+    setOutput(0);
+    
+    
     
 
     while(1)
     {
         if(!OnOff_GetValue())
         {
-            setOutput(0xFF);
+            if(LATC == 0x00) //If Off
+            {
+                setOutput(lastOutput);
+            }
+            else //If On
+            {
+                setOutput(0);
+            }
         }
-        if(!Ch01Input_GetValue())
-        {
-            setOutput(0);
-        }
-        else if(!Ch02Input_GetValue())
+        else if(!Ch01Input_GetValue())
         {
             setOutput(1);
         }
-        else if(!Ch03Input_GetValue())
+        else if(!Ch02Input_GetValue())
         {
             setOutput(2);
         }
-        else if(!Ch04Input_GetValue())
+        else if(!Ch03Input_GetValue())
         {
             setOutput(3);
         }
-        else if(!Ch05Input_GetValue())
+        else if(!Ch04Input_GetValue())
         {
             setOutput(4);
         }
-        else if(!Ch06Input_GetValue())
+        else if(!Ch05Input_GetValue())
         {
             setOutput(5);
+        }
+        else if(!Ch06Input_GetValue())
+        {
+            setOutput(6);
         }
         
 
